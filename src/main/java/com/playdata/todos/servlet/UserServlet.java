@@ -29,7 +29,7 @@ public class UserServlet extends HttpServlet {
         UserDao userDao = new UserDao();
         userDao.insert(user);
 
-        resp.sendRedirect("/user"); // 추가 후 재실행 해봄  이 서버로 보내버리는것.? 그럼 다시 doget으로 가서 페이지를 다시 보여주는 것.
+        resp.sendRedirect("/login"); // 로그인으로 보내주는 것.
         resp.setStatus(201);
 
     }

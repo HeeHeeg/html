@@ -14,18 +14,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("views/login.html").forward(req, resp);
-        super.doGet(req, resp);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        User user = new User(null, username, password, "name", null);
-        UserDao userDao = new UserDao();
-        userDao.insert(user);
-        userDao.login("id","pw");
-        resp.sendRedirect("/user");
-        super.doPost(req, resp);
+        if (new UserDao().login(username, password)){
+            resp.sendRedirect("/main");
+        }else resp.sendRedirect("/user");
+
     }
 }

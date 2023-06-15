@@ -6,19 +6,11 @@
 </head>
 <body>
 <div>
-    <form action="/login" method="post"></form>
-</div>
-  <div>
-      <label> 아이디 : <input id="id" type="text"></label>
-  </div>
-  <div>
-      <label> 비밀번호 : <input id="password" type="text"></label>
-  </div>
-  <div>
-      <a href="user.html"><input type="button" value="회원가입"></a>
-      <a href="main.html"></a> <input type="button" value="로그인" onclick="function login() {
-      }
-      login();">
+    <form action="/login" method="post">
+        <input type="text" name="username" placeholder="아이디를 입력해주세요">
+        <input type="password" name="password" placeholder="비밀번호를 입력해주세요">
+        <input type="submit">
+    </form>
   </div>
 
 </body>

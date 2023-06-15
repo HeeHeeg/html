@@ -14,7 +14,7 @@ import java.util.List;
 public class UserDao {
     public void insert(User user) {
         Connection conn = new  JdbcConnection().getJdbc();
-        String sql = "insert into users(username, password, name)" +
+        String sql = "insert into users(username, password, name) " +
                 "values(?, ?, ?)";
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -31,14 +31,14 @@ public class UserDao {
         List<User> users = new ArrayList<User>();
         Connection conn = new  JdbcConnection().getJdbc();
         String sql = "select id, username, name, create_at "+
-                "from user " +
+                "from users " +
                 "where username = ? and password = ?";
         try {
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, id);
             pst.setString(2, password);
             ResultSet resultSet = pst.executeQuery();
-            while (!resultSet.next()) {
+            while (resultSet.next()) {
                 users.add(makeUser(resultSet));
             }
         } catch (SQLException e) {
