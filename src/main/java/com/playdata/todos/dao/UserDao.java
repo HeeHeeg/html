@@ -1,6 +1,7 @@
 package com.playdata.todos.dao;
 
 import com.playdata.todos.config.JdbcConnection;
+import com.playdata.todos.config.LogoutThread;
 import com.playdata.todos.dto.User;
 
 import java.lang.reflect.Constructor;
@@ -47,7 +48,7 @@ public class UserDao {
         }
         if (users.size() != 0) {
             me = users.get(0);
-            System.out.println(me);
+            new LogoutThread().start();
             return true;
         }
         return false;

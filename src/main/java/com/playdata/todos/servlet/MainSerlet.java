@@ -14,19 +14,24 @@ public class MainSerlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        req.getRequestDispatcher("/views/main.html").forward(req, resp);
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
-        writer.println("<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <title>mian</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <h1>" + UserDao.me.getName() + " 환영합니다.</h1>\n" +
-                "    <img src=\"ing/라이언img.jpeg\"/>\n" +
-                "</body>\n" +
-                "</html>");
-        writer.close();
+        if (UserDao.me !=null) {
+            resp.setContentType("text/html;charset=UTF-8");
+            PrintWriter writer = resp.getWriter();
+            writer.println("<!DOCTYPE html>\n" +
+                    "<html lang=\"en\">\n" +
+                    "<head>\n" +
+                    "    <meta charset=\"UTF-8\">\n" +
+                    "    <title>mian</title>\n" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "    <h1>" + UserDao.me.getName() + " 환영합니다.</h1>\n" +
+                    "    <h1>" + UserDao.me.getCreateAt() + " 가입했습니다.</h1>\n" +
+                    "    <img src=\"ing/라이언img.jpeg\"/>\n" +
+                    "</body>\n" +
+                    "</html>");
+            writer.close();
+        }else {
+            resp.sendRedirect("login");
+        }
     }
 }
