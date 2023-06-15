@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
+    public static User me;
     public void insert(User user) {
         Connection conn = new  JdbcConnection().getJdbc();
         String sql = "insert into users(username, password, name) " +
@@ -44,7 +45,12 @@ public class UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return users.size() !=0;
+        if (users.size() != 0) {
+            me = users.get(0);
+            System.out.println(me);
+            return true;
+        }
+        return false;
 
     }
 
