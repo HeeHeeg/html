@@ -9,12 +9,21 @@ import java.io.IOException;
 public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("views/user.html").forward(req, resp);
-        super.doGet(req, resp);
+        resp.setStatus(200);
+        req.getRequestDispatcher("views/user.html").forward(req, resp);  // 페이지를 보여주겠다~
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String name = req.getParameter("name");
+        System.out.println(username);
+        System.out.println(password);
+        System.out.println(name);
+        resp.setStatus(201);
+        resp.sendRedirect("/user"); // 추가 후 재실행 해봄  이 서버로 보내버리는것.? 그럼 다시 doget으로 가서 페이지를 다시 보여주는 것.
+
     }
 }
